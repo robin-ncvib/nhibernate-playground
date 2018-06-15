@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using NHibernate.Linq;
 using NHibernate.Playground.Domain;
 
 namespace NHibernate.Playground.Repositories
@@ -13,7 +14,11 @@ namespace NHibernate.Playground.Repositories
             using (var session = sessionFactory.OpenSession())
             using (var transaction = session.BeginTransaction())
             {
-                return session.Query<MeasurementPoint>().Single(m => m.Id == id);
+                return 
+                    session
+                        .Query<MeasurementPoint>()
+                        .FetchMany(x=>x.Forecasts)
+                        .Single(m => m.Id == id);
             }
         }
 
