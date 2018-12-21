@@ -43,17 +43,26 @@
   <ItemGroup>
     <Compile Include="AssemblyToken.cs" />
     <Compile Include="Domain\Forecast.cs" />
+    <Compile Include="Domain\Inspection\PostInspection.cs" />
+    <Compile Include="Domain\Inspection\PostInspectionPerson.cs" />
     <Compile Include="Domain\MeasurementPoint.cs" />
     <Compile Include="Domain\Model.cs" />
+    <Compile Include="Domain\Person.cs" />
+    <Compile Include="EnumConvention.cs" />
+    <Compile Include="InspectionConfiguration.cs" />
+    <Compile Include="Mappings\Inspection\PostInspectionOverride.cs" />
+    <Compile Include="Mappings\Inspection\PostInspectionPersonOverride.cs" />
     <Compile Include="Mappings\MeasurementPointMap.cs" />
     <Compile Include="Mappings\ModelMap.cs" />
     <Compile Include="Mappings\ForecastMap.cs" />
+    <Compile Include="Mappings\PersonMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MeasurementPointRepository.cs" />
     <Compile Include="Repositories\ModelRepository.cs" />
     <Compile Include="SessionFactory.cs" />
     <Compile Include="Specifications\ContextSpecification.cs" />
     <Compile Include="Specifications\ExpectedExceptionException.cs" />
+    <Compile Include="Specifications\Inspections\LoadPostInspections.cs" />
     <Compile Include="Specifications\MeasurementPoints\Forecasts\WhenANewForecastIsSaved.cs" />
     <Compile Include="Specifications\Models\WhenAllModelsAreLoaded.cs" />
     <Compile Include="Specifications\MeasurementPoints\WhenANewMeasurementPointIsSaved.cs" />
@@ -72,6 +81,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\2018-12-21-10-00-00-TablesInNewSchema.sql" />
     <Content Include="Scripts\DatabaseGeneration.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

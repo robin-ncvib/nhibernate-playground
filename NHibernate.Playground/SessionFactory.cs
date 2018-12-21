@@ -1,6 +1,11 @@
 ﻿using System;
+
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+
+using NHibernate.Playground.Domain.Inspection;
+using NHibernate.Playground.Mappings.Inspection;
 using NHibernate.Tool.hbm2ddl;
 
 namespace NHibernate.Playground
@@ -28,12 +33,27 @@ namespace NHibernate.Playground
 
         private static FluentConfiguration CreateFluentConfiguration()
         {
-            void Mappings(MappingConfiguration m) => m.FluentMappings.AddFromAssemblyOf<AssemblyToken>();
-
             return Fluently
                 .Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString("Data Source=localhost;Database=NHibernatePlayground;Trusted_Connection=True;").ShowSql())
-                .Mappings(Mappings);
-        }      
+                .Mappings(
+                    m =>
+                        {
+                            m.FluentMappings.AddFromAssemblyOf<AssemblyToken>();
+                            m.AutoMappings.Add(CreateInspectionAutoMappings());
+                        });
+        }
+
+        private static AutoPersistenceModel CreateInspectionAutoMappings()
+        {
+            var besiktningConfiguration = new InspectionConfiguration();
+            var besiktningModel =
+                AutoMap
+                    .AssemblyOf<AssemblyToken>(besiktningConfiguration)
+                    .UseOverridesFromAssemblyOf<AssemblyToken>()
+                    .Conventions.Add(new EnumConvention());
+
+            return besiktningModel;
+        }
     }
 }
