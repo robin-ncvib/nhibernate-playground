@@ -9,6 +9,6 @@ namespace NHibernate.Playground.Domain.Inspection
         public virtual string Name { get; set; }
 
         public virtual Person ContactPerson { get; set; }
-        //public virtual List<Person> Inspectors { get; set; }
+        public virtual IList<PostInspectionPerson> Inspectors { get; set; }
     }
 }

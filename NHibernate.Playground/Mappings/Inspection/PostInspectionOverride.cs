@@ -11,8 +11,8 @@ namespace NHibernate.Playground.Mappings.Inspection
         {
             mapping.Schema("Inspection");
             mapping.Id(x => x.PostInspectionId).Column("PostInspectionId").GeneratedBy.Assigned();
-            mapping.References(x => x.ContactPerson).Column("ContactPersonId").NotFound.Ignore();
-            //mapping.HasManyToMany(x => x.Inspectors).NotFound.Ignore();
+            mapping.References(x => x.ContactPerson).Column("ContactPersonId").Not.LazyLoad().NotFound.Ignore();            
+            mapping.HasMany(x => x.Inspectors).KeyColumn("PostInspectionId").Not.LazyLoad().NotFound.Ignore();
         }
     }
 }

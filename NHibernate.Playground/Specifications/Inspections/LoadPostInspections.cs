@@ -19,6 +19,7 @@ namespace NHibernate.Playground.Specifications.Inspections
             {
                 var postInspections = session.Query<PostInspection>().ToList();
                 Assert.That(postInspections, Is.Not.Empty);
+                Assert.That(postInspections.All(x => x.Inspectors.Any()), Is.True);
             }
         }
     }
