@@ -59,6 +59,8 @@
     <Compile Include="Specifications\MeasurementPoints\WhenANewMeasurementPointIsSaved.cs" />
     <Compile Include="Specifications\MeasurementPoints\WhenAnInactivatedMeasurementPointIsSaved.cs" />
     <Compile Include="Specifications\Models\WhenASingleModelIsLoaded.cs" />
+    <Compile Include="TypedIdentifiers\Id.cs" />
+    <Compile Include="TypedIdentifiers\MeasurementPointId.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
